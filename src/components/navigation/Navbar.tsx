@@ -140,6 +140,7 @@ export function Navbar({ session }: { session?: Session | null }) {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "group relative flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-sm font-medium transition-all duration-200",
                     isTransparent
@@ -222,6 +223,7 @@ export function Navbar({ session }: { session?: Session | null }) {
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
               className={cn(
                 "ml-1 flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200 lg:hidden",
                 isTransparent

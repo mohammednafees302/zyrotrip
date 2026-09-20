@@ -248,9 +248,10 @@ body {
 }
 
 /* ─── Focus Visible ───────────────────────────────────────────────────────── */
+/* Accessibility: Enhanced focus ring for keyboard navigation */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline: 2px solid #D4AF37;
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
@@ -390,3 +391,10 @@ video {
   );
   background-size: 200% 100%;
 }
+
+/* 
+  Accessibility: Color Contrast Ratios (WCAG AA requires 4.5:1 for normal text)
+  - Charcoal #141310 on Stone #FAF9F7: ~18:1 ✓
+  - Amber #D4AF37 on Charcoal #141310: ~7.2:1 ✓  
+  - Stone #888888 on White #FFFFFF: ~3.5:1 (use only for large text/icons)
+*/

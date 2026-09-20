@@ -83,6 +83,7 @@ export function MobileNav({ open, onClose, navItems }: MobileNavProps) {
 
           {/* Drawer */}
           <motion.div
+            id="mobile-menu"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SkipNav } from "@/components/layout/SkipNav";
 
 // ─── Fonts ──────────────────────────────────────────────────────────────────
 const inter = Inter({
@@ -118,11 +119,12 @@ export default async function RootLayout({
       className={`${inter.variable} ${playfair.variable}`}
     >
       <body className="font-sans antialiased">
+        <SkipNav />
         <Providers>
           <WebVitals />
           <div className="flex min-h-screen flex-col">
             <Navbar session={session} />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">{children}</main>
             <Footer />
           </div>
         </Providers>
