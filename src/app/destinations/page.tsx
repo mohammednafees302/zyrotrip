@@ -5,9 +5,32 @@ import { DestinationsFilters } from "@/components/destination/DestinationsFilter
 import { DestinationsHero } from "@/components/destination/DestinationsHero";
 
 export const metadata: Metadata = {
-  title: "Destinations — Discover the World",
+  title: "Destinations | ZyroTrip",
   description:
     "Explore 100+ handpicked destinations across every continent. Filter by category, budget, or travel style to find your perfect journey.",
+  openGraph: {
+    title: "Destinations | ZyroTrip",
+    description:
+      "Explore 100+ handpicked destinations across every continent. Filter by category, budget, or travel style to find your perfect journey.",
+    url: "/destinations",
+    siteName: "ZyroTrip",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Explore World Destinations — ZyroTrip",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Destinations | ZyroTrip",
+    description:
+      "Explore 100+ handpicked destinations across every continent. Filter by category, budget, or travel style.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 interface DestinationsPageProps {

@@ -2,9 +2,32 @@ import type { Metadata } from "next";
 import { AIPlannerInterface } from "@/components/ai/AIPlannerInterface";
 
 export const metadata: Metadata = {
-  title: "AI Travel Planner — Design Your Dream Trip",
+  title: "AI Travel Concierge | ZyroTrip",
   description:
     "Let ZyroTrip's AI create a personalized travel itinerary in seconds. Just tell us where you want to go and what you love.",
+  openGraph: {
+    title: "AI Travel Concierge | ZyroTrip",
+    description:
+      "Let ZyroTrip's AI create a personalized travel itinerary in seconds. Just tell us where you want to go and what you love.",
+    url: "/ai-planner",
+    siteName: "ZyroTrip",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AI Travel Concierge — ZyroTrip",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Travel Concierge | ZyroTrip",
+    description:
+      "Let ZyroTrip's AI create a personalized travel itinerary in seconds.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function AIPlannerPage() {

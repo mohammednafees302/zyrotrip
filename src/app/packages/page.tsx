@@ -20,9 +20,32 @@ import type { Prisma } from "@prisma/client";
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Travel Packages — Curated Journeys",
+  title: "Packages | ZyroTrip",
   description:
     "Discover handcrafted travel packages for every style — adventure, luxury, cultural, family, and more. All-inclusive itineraries with day-by-day plans.",
+  openGraph: {
+    title: "Packages | ZyroTrip",
+    description:
+      "Discover handcrafted travel packages for every style — adventure, luxury, cultural, family, and more. All-inclusive itineraries with day-by-day plans.",
+    url: "/packages",
+    siteName: "ZyroTrip",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Curated Travel Packages — ZyroTrip",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Packages | ZyroTrip",
+    description:
+      "Discover handcrafted travel packages for every style — adventure, luxury, cultural, family, and more.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 // ─── Types ───────────────────────────────────────────────────────────────────

@@ -27,9 +27,32 @@ import { HotelsFilters } from "@/components/hotels/HotelsFilters";
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Hotels — Luxury & Boutique Stays",
+  title: "Hotels | ZyroTrip",
   description:
     "Browse our curated collection of hotels, resorts, and boutique stays around the world. Filter by destination, stars, price, and rating.",
+  openGraph: {
+    title: "Hotels | ZyroTrip",
+    description:
+      "Browse our curated collection of hotels, resorts, and boutique stays around the world. Filter by destination, stars, price, and rating.",
+    url: "/hotels",
+    siteName: "ZyroTrip",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Luxury & Boutique Hotels — ZyroTrip",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hotels | ZyroTrip",
+    description:
+      "Browse our curated collection of hotels, resorts, and boutique stays around the world.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 // ─── Types ───────────────────────────────────────────────────────────────────

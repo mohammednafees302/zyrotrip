@@ -101,6 +101,7 @@ export const viewport: Viewport = {
 };
 
 import { auth } from "@/lib/auth";
+import { WebVitals } from "@/components/analytics/WebVitals";
 
 // ─── Root Layout ─────────────────────────────────────────────────────────────
 export default async function RootLayout({
@@ -118,6 +119,7 @@ export default async function RootLayout({
     >
       <body className="font-sans antialiased">
         <Providers>
+          <WebVitals />
           <div className="flex min-h-screen flex-col">
             <Navbar session={session} />
             <main className="flex-1">{children}</main>
