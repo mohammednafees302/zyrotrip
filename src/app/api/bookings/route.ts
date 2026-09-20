@@ -2,6 +2,9 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { apiResponse, apiError, generateBookingReference, generateInvoiceNumber } from "@/lib/utils";
+import { Resend } from "resend";
+import { render } from "@react-email/render";
+import BookingConfirmation from "@/emails/BookingConfirmation";
 
 const bookingSchema = z.object({
   packageId: z.string().optional(),
@@ -46,16 +49,28 @@ export async function POST(request: Request) {
     }
 
     let basePrice = 0;
+    let packageName = "";
+    let destinationName = "";
     if (data.packageId) {
-      const pkg = await db.travelPackage.findUnique({ where: { id: data.packageId } });
+      const pkg = await db.travelPackage.findUnique({ 
+        where: { id: data.packageId },
+        include: { destination: true }
+      });
       if (!pkg) return apiError("Package not found", "NOT_FOUND", 404);
       basePrice = Number(pkg.priceDiscount || pkg.priceFrom) * data.adults; 
+      packageName = pkg.title;
+      destinationName = pkg.destination.name;
     } else if (data.hotelId) {
-      const hotel = await db.hotel.findUnique({ where: { id: data.hotelId } });
+      const hotel = await db.hotel.findUnique({ 
+        where: { id: data.hotelId },
+        include: { destination: true }
+      });
       if (!hotel) return apiError("Hotel not found", "NOT_FOUND", 404);
       // Simplified nights calculation
       const nights = Math.max(1, Math.ceil((new Date(data.checkOut).getTime() - new Date(data.checkIn).getTime()) / (1000 * 60 * 60 * 24)));
       basePrice = Number(hotel.priceFrom) * nights;
+      packageName = hotel.name;
+      destinationName = hotel.destination.name;
     }
 
     let discount = 0;
@@ -150,6 +165,32 @@ export async function POST(request: Request) {
 
       return { booking, payment };
     });
+
+    if (process.env.RESEND_API_KEY && session.user.email) {
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const html = await render(
+          BookingConfirmation({
+            customerName: session.user.name || "Valued Customer",
+            packageName: packageName,
+            destinationName: destinationName,
+            startDate: new Date(data.checkIn),
+            endDate: new Date(data.checkOut),
+            totalPrice: finalAmount,
+            bookingId: bookingRef,
+          })
+        );
+        
+        await resend.emails.send({
+          from: "ZyroTrip <bookings@zyrotrip.com>",
+          to: session.user.email,
+          subject: `Your ZyroTrip Booking Confirmation: ${destinationName}`,
+          html: html,
+        });
+      } catch (emailError) {
+        console.error("[BOOKING_EMAIL_ERROR]", emailError);
+      }
+    }
 
     return apiResponse({
       bookingId: result.booking.id,
