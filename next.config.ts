@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "**.staticflickr.com",
+      },
+      {
+        protocol: "https",
         hostname: "**.supabase.co",
       },
       {
