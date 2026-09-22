@@ -29,6 +29,7 @@ import {
 import { db } from "@/lib/db";
 import { formatCurrency, formatDate, getInitials } from "@/lib/utils";
 import { WeatherWidget } from "@/components/destination/WeatherWidget";
+import DestinationMap from "@/components/destination/DestinationMap";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -774,6 +775,16 @@ export default async function DestinationPage({
               </div>
             </div>
           </section>
+        )}
+
+        {/* ── Interactive Map ────────────────────────────────────────── */}
+        {destination.latitude && destination.longitude && (
+          <DestinationMap
+            latitude={Number(destination.latitude)}
+            longitude={Number(destination.longitude)}
+            name={destination.name}
+            country={destination.country.name}
+          />
         )}
 
         {/* ── Reviews ───────────────────────────────────────────────────── */}
