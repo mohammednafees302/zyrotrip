@@ -105,13 +105,11 @@ import { auth } from "@/lib/auth";
 import { WebVitals } from "@/components/analytics/WebVitals";
 
 // ─── Root Layout ─────────────────────────────────────────────────────────────
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-
   return (
     <html
       lang="en"
@@ -123,7 +121,7 @@ export default async function RootLayout({
         <Providers>
           <WebVitals />
           <div className="flex min-h-screen flex-col">
-            <Navbar session={session} />
+            <Navbar />
             <main id="main-content" className="flex-1">{children}</main>
             <Footer />
           </div>

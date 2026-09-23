@@ -84,10 +84,11 @@ function Logo({ scrolled }: { scrolled: boolean }) {
   );
 }
 
-import type { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 // ─── Navbar Component ─────────────────────────────────────────────────────────
-export function Navbar({ session }: { session?: Session | null }) {
+export function Navbar() {
+  const { data: session } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
