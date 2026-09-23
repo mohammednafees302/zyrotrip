@@ -60,21 +60,25 @@ export async function GET(
     const data = await res.json();
     const expiresAt = new Date(now.getTime() + CACHE_DURATION_MS);
 
-    // Save to Cache
-    await db.weatherCache.upsert({
-      where: { destinationId: id },
-      update: {
-        data: JSON.stringify(data),
-        cachedAt: now,
-        expiresAt,
-      },
-      create: {
-        destinationId: id,
-        data: JSON.stringify(data),
-        cachedAt: now,
-        expiresAt,
-      },
-    });
+    // Save to Cache (wrap in try-catch for read-only Vercel environments)
+    try {
+      await db.weatherCache.upsert({
+        where: { destinationId: id },
+        update: {
+          data: JSON.stringify(data),
+          cachedAt: now,
+          expiresAt,
+        },
+        create: {
+          destinationId: id,
+          data: JSON.stringify(data),
+          cachedAt: now,
+          expiresAt,
+        },
+      });
+    } catch (cacheError) {
+      console.warn("Could not write to weather cache (read-only filesystem):", cacheError);
+    }
 
     data._cachedAt = now.toISOString();
 
