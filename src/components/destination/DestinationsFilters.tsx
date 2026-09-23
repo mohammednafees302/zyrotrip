@@ -66,7 +66,7 @@ export function DestinationsFilters({ searchParams }: DestinationsFiltersProps) 
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             placeholder="Search destinations..."
-            className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2.5 pl-9 pr-4 text-sm text-charcoal-950 placeholder:text-charcoal-400 outline-none transition-colors focus:border-amber-500/50 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-stone-500"
+            className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2.5 pl-9 pr-4 text-sm text-charcoal-950 placeholder:text-charcoal-400 outline-none transition-colors focus:border-amber-500/50 focus:bg-white dark:focus:bg-charcoal-800 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-stone-500"
           />
         </div>
       </div>
@@ -160,7 +160,7 @@ export function DestinationsFilters({ searchParams }: DestinationsFiltersProps) 
                 className={cn(
                   "w-full rounded-lg px-3 py-2.5 text-left text-sm transition-all",
                   isActive
-                    ? "bg-charcoal-950 font-medium text-white dark:bg-white dark:text-charcoal-950"
+                    ? "bg-charcoal-950 font-medium text-white dark:bg-white dark:!text-[#141310]"
                     : "text-charcoal-600 hover:bg-stone-50 hover:text-charcoal-950 dark:text-stone-400 dark:hover:bg-white/5 dark:hover:text-white"
                 )}
               >

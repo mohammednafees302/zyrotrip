@@ -46,10 +46,10 @@ export function Footer() {
         <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10 xl:px-16">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h3 className="font-display text-2xl font-semibold text-white">
+              <p className="font-display text-2xl font-semibold text-white">
                 Get inspired for your next journey
-              </h3>
-              <p className="mt-2 text-stone-400">
+              </p>
+              <p className="mt-2 text-stone-300">
                 Curated destinations, exclusive deals, and travel guides delivered weekly.
               </p>
             </div>
@@ -61,7 +61,7 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="flex-shrink-0 rounded-xl bg-amber-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-600"
+                className="flex-shrink-0 rounded-xl bg-amber-500 px-5 py-3 text-sm font-semibold text-stone-900 transition-colors hover:bg-amber-400"
               >
                 Subscribe
               </button>
@@ -82,7 +82,7 @@ export function Footer() {
               </div>
               <span className="font-display text-xl font-bold text-white">ZyroTrip</span>
             </div>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-400">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-300">
               Premium travel discovery, planning, and booking platform. We help curious
               travelers explore the world with confidence and style.
             </p>
@@ -91,14 +91,14 @@ export function Footer() {
             <div className="mt-6 space-y-2">
               <a
                 href="mailto:hello@zyrotrip.com"
-                className="flex items-center gap-2 text-sm text-stone-400 transition-colors hover:text-white"
+                className="flex items-center gap-2 text-sm text-stone-300 transition-colors hover:text-white"
               >
                 <Mail className="h-4 w-4" />
                 hello@zyrotrip.com
               </a>
               <a
                 href="tel:+18001234567"
-                className="flex items-center gap-2 text-sm text-stone-400 transition-colors hover:text-white"
+                className="flex items-center gap-2 text-sm text-stone-300 transition-colors hover:text-white"
               >
                 <Phone className="h-4 w-4" />
                 +1 800 123 4567
@@ -114,7 +114,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`ZyroTrip on ${social.label}`}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-stone-400 transition-all hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-stone-300 transition-all hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -125,15 +125,15 @@ export function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone-300">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone-300">
                 {category}
-              </h4>
+              </p>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-stone-400 transition-colors hover:text-white"
+                      className="text-sm text-stone-300 transition-colors hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -150,8 +150,8 @@ export function Footer() {
             © {new Date().getFullYear()} ZyroTrip, Inc. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-4">
-            <span className="text-xs text-stone-600">🌍 Available worldwide</span>
-            <span className="text-xs text-stone-600">🔒 Secure & encrypted</span>
+            <span className="text-xs text-stone-500 dark:text-stone-300">🌍 Available worldwide</span>
+            <span className="text-xs text-stone-500 dark:text-stone-300">🔒 Secure & encrypted</span>
           </div>
         </div>
 

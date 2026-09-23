@@ -131,6 +131,12 @@ export async function POST(request: NextRequest) {
 
     const { type, itemId } = parsed.data;
 
+    // ── Verify user still exists in database (handles stale JWTs) ───
+    const user = await db.user.findUnique({ where: { id: session.user.id } });
+    if (!user) {
+      return apiError("User account no longer exists. Please sign in again.", "UNAUTHORIZED", 401);
+    }
+
     // ── Ensure wishlist exists (upsert pattern) ─────────────────────
     const wishlist = await db.wishlist.upsert({
       where: { userId: session.user.id },

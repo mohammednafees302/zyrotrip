@@ -212,7 +212,7 @@ export function Navbar({ session }: { session?: Session | null }) {
                 "hidden items-center gap-2 rounded-full px-6 py-2.5 text-[11px] font-bold tracking-widest uppercase transition-all duration-200 sm:flex",
                 isTransparent
                   ? "bg-[#d3b482] text-charcoal-950 hover:bg-[#ebd2a9]"
-                  : "bg-charcoal-950 text-white hover:bg-charcoal-800 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-200"
+                  : "bg-charcoal-950 text-white hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-200 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-300"
               )}
             >
               Plan A Journey

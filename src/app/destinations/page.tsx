@@ -62,11 +62,11 @@ export default async function DestinationsPage({ searchParams }: DestinationsPag
           </aside>
 
           {/* Main Grid */}
-          <main className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1">
             <Suspense fallback={<DestinationsGridSkeleton />}>
               <DestinationsGrid searchParams={params} />
             </Suspense>
-          </main>
+          </div>
         </div>
       </div>
     </div>

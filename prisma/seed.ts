@@ -131,7 +131,7 @@ async function main() {
     {
       name: 'Paris', slug: 'paris', countryName: 'France', categorySlugs: ['city', 'cultural', 'honeymoon'],
       tagline: 'The City of Light', description: 'Paris enchants visitors with its Haussmann boulevards, world-renowned museums, café culture, and the timeless romance of the Eiffel Tower glittering against the Parisian sky.',
-      heroImage: 'https://images.unsplash.com/photo-1499856374053-2d5cde8abde1?w=1200&q=80',
+      heroImage: 'https://images.unsplash.com/photo-1502602881462-f22444bf1fc1?w=1200&q=80',
       priceFrom: 1700, rating: 4.8, bestTimeToVisit: 'April to June, September to October',
       climate: 'Oceanic', language: 'French', timezone: 'Europe/Paris',
       latitude: 48.8566, longitude: 2.3522, featured: true, trending: false, published: true,
@@ -155,7 +155,7 @@ async function main() {
     {
       name: 'Rome', slug: 'rome', countryName: 'Italy', categorySlugs: ['cultural', 'city'],
       tagline: 'Eternal city, eternal wonder', description: 'Rome layers 3,000 years of history into every cobblestone street — the Colosseum, Vatican City, the Pantheon, and countless piazzas make it one of the world\'s greatest open-air museums.',
-      heroImage: 'https://images.unsplash.com/photo-1555992643-e44f92a48d51?w=1200&q=80',
+      heroImage: 'https://images.unsplash.com/photo-1552832233-4f1ab7c2e36b?w=1200&q=80',
       priceFrom: 1400, rating: 4.8, bestTimeToVisit: 'April to June, September to October',
       climate: 'Mediterranean', language: 'Italian', timezone: 'Europe/Rome',
       latitude: 41.9028, longitude: 12.4964, featured: false, trending: false, published: true,
@@ -293,7 +293,7 @@ async function main() {
       name: 'Aman Amandari', slug: 'aman-amandari', destinationSlug: 'bali',
       stars: 5, rating: 4.9, priceFrom: 850,
       description: 'A serene luxury resort modeled after a traditional Balinese village.',
-      address: 'Kedewatan, Ubud, Bali', heroImage: 'https://images.unsplash.com/photo-1582719478250-c89d145f39b4?w=1200&q=80',
+      address: 'Kedewatan, Ubud, Bali', heroImage: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80',
       amenities: JSON.stringify(['Pool', 'Spa', 'Restaurant', 'WiFi', 'Room Service']), published: true,
     },
     {
@@ -314,7 +314,7 @@ async function main() {
       name: 'Over The Water Villa Maldives', slug: 'overwater-maldives', destinationSlug: 'maldives',
       stars: 5, rating: 5.0, priceFrom: 2800,
       description: 'Spend your days in a glass-floored overwater bungalow with direct access to the world\'s most pristine lagoon.',
-      address: 'North Malé Atoll, Maldives', heroImage: 'https://images.unsplash.com/photo-1602002418082-a4443978a11d?w=1200&q=80',
+      address: 'North Malé Atoll, Maldives', heroImage: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&q=80',
       amenities: JSON.stringify(['Glass Floor', 'Private Lagoon', 'Snorkelling', 'Butler', 'Spa']), published: true,
     },
   ];

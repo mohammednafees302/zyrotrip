@@ -13,15 +13,25 @@ const MapInner = dynamic(() => import('./MapInner'), {
   ),
 });
 
+interface MapMarker {
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  subtitle: string;
+  type?: 'hotel' | 'experience' | 'attraction' | 'destination';
+}
+
 interface DestinationMapProps {
   latitude: number;
   longitude: number;
   name: string;
   country: string;
+  markers?: MapMarker[];
 }
 
 export default function DestinationMap(props: DestinationMapProps) {
-  const { latitude, longitude } = props;
+  const { latitude, longitude, markers = [] } = props;
 
   return (
     <section className="py-20 px-6 md:px-12 lg:px-20 bg-gray-950">

@@ -407,7 +407,7 @@ export function AIPlannerInterface() {
             <p className="mt-1 text-sm text-stone-400 dark:text-amber-100">
               Turn this itinerary into a confirmed booking.
             </p>
-            <button className="mt-4 w-full rounded-xl bg-amber-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-600 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-100">
+            <button className="mt-4 w-full rounded-xl bg-amber-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-600 dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-300">
               Find matching packages
             </button>
           </div>
@@ -457,7 +457,7 @@ export function AIPlannerInterface() {
                 min={1}
                 max={30}
                 {...register("duration", { valueAsNumber: true })}
-                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white"
+                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:focus:bg-charcoal-800 dark:border-white/10 dark:bg-white/5 dark:text-white"
               />
             </div>
             <div>
@@ -469,7 +469,7 @@ export function AIPlannerInterface() {
                 min={1}
                 max={20}
                 {...register("travelers", { valueAsNumber: true })}
-                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white"
+                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:focus:bg-charcoal-800 dark:border-white/10 dark:bg-white/5 dark:text-white"
               />
             </div>
             <div>
@@ -479,7 +479,7 @@ export function AIPlannerInterface() {
               <input
                 type="date"
                 {...register("startDate")}
-                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white"
+                className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-charcoal-950 outline-none focus:border-amber-500 focus:bg-white dark:focus:bg-charcoal-800 dark:border-white/10 dark:bg-white/5 dark:text-white"
               />
             </div>
           </div>
@@ -554,7 +554,7 @@ export function AIPlannerInterface() {
         <button
           type="submit"
           disabled={isGenerating}
-          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-charcoal-950 px-8 py-5 text-base font-semibold text-white transition-all hover:bg-charcoal-800 active:scale-[0.98] disabled:opacity-60 dark:bg-amber-500 dark:hover:bg-amber-600"
+          className="flex w-full items-center justify-center gap-3 rounded-2xl bg-charcoal-950 px-8 py-5 text-base font-semibold text-white transition-all hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white active:scale-[0.98] disabled:opacity-60 dark:bg-amber-500 dark:hover:bg-amber-600"
         >
           {isGenerating ? (
             <>

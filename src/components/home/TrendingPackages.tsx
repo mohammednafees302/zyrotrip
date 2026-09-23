@@ -146,7 +146,7 @@ function PackageCard({ pkg, index }: { pkg: Package; index: number }) {
               )}
               <span className="ml-1 text-xs text-charcoal-400 dark:text-stone-500">/ person</span>
             </div>
-            <span className="rounded-lg bg-charcoal-950 px-4 py-2 text-xs font-semibold text-white transition-colors group-hover:bg-amber-500 dark:bg-white dark:text-charcoal-950">
+            <span className="rounded-lg bg-charcoal-950 px-4 py-2 text-xs font-semibold text-white transition-colors group-hover:bg-amber-500 dark:bg-white dark:!text-[#141310]">
               View
             </span>
           </div>

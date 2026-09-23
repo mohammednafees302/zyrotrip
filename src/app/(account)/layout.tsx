@@ -69,11 +69,11 @@ export default async function AccountLayout({
           </aside>
 
           {/* Main Content */}
-          <main className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1">
             <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-charcoal-900 sm:p-8">
               {children}
             </div>
-          </main>
+          </div>
         </div>
 
       </div>

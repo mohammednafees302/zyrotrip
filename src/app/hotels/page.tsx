@@ -302,7 +302,7 @@ function HotelCard({ hotel }: { hotel: HotelItem }) {
           </div>
           <Link
             href={`/hotels/${hotel.slug}`}
-            className="flex items-center gap-1.5 rounded-xl bg-charcoal-950 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-charcoal-800 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-100"
+            className="flex items-center gap-1.5 rounded-xl bg-charcoal-950 px-4 py-2 text-xs font-semibold text-white transition-all hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-200"
           >
             View Hotel
             <ArrowRight className="h-3.5 w-3.5" />
@@ -382,7 +382,7 @@ async function HotelsGrid({ searchParams }: { searchParams: SearchParams }) {
               className={cn(
                 "flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium transition-all",
                 p === page
-                  ? "bg-charcoal-950 text-white dark:bg-white dark:text-charcoal-950"
+                  ? "bg-charcoal-950 text-white dark:bg-white dark:!text-[#141310]"
                   : "border border-stone-200 text-charcoal-600 hover:border-charcoal-300 hover:bg-stone-50 dark:border-white/10 dark:text-stone-400 dark:hover:bg-white/5"
               )}
             >
@@ -432,11 +432,11 @@ export default async function HotelsPage({ searchParams }: HotelsPageProps) {
             <HotelsFilters searchParams={params} />
           </aside>
 
-          <main className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1">
             <Suspense fallback={<HotelsGridSkeleton />}>
               <HotelsGrid searchParams={params} />
             </Suspense>
-          </main>
+          </div>
         </div>
       </div>
     </div>

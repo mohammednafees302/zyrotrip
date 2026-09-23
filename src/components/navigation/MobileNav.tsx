@@ -185,7 +185,7 @@ export function MobileNav({ open, onClose, navItems }: MobileNavProps) {
               <Link
                 href="/auth/login"
                 onClick={onClose}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-100"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-300"
               >
                 <User className="h-4 w-4" />
                 Sign in to ZyroTrip

@@ -337,7 +337,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 active:scale-[0.98] disabled:opacity-60 dark:bg-white dark:text-charcoal-950"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white active:scale-[0.98] disabled:opacity-60 dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-200"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

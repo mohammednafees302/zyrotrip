@@ -2,6 +2,7 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { apiResponse, apiError, generateBookingReference, generateInvoiceNumber } from "@/lib/utils";
+import { stripe } from "@/lib/stripe";
 import { Resend } from "resend";
 import { render } from "@react-email/render";
 import BookingConfirmation from "@/emails/BookingConfirmation";
@@ -192,11 +193,22 @@ export async function POST(request: Request) {
       }
     }
 
+    // Create Stripe PaymentIntent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: Math.round(finalAmount * 100),
+      currency: "usd",
+      metadata: {
+        bookingId: result.booking.id,
+        bookingReference: result.booking.reference,
+        userId: session.user.id,
+      },
+    });
+
     return apiResponse({
       bookingId: result.booking.id,
       reference: result.booking.reference,
       paymentId: result.payment.id,
-      clientSecret: "mock_stripe_client_secret_for_demo"
+      clientSecret: paymentIntent.client_secret,
     }, "Booking created successfully", 201);
     
   } catch (error) {

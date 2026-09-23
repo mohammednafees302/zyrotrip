@@ -172,7 +172,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-100"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-charcoal-950 px-6 py-3.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:scale-[0.98] active:bg-charcoal-900 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-200"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -188,7 +188,7 @@ export default function LoginPage() {
           {/* Divider */}
           <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-stone-200 dark:bg-white/10" />
-            <span className="text-xs text-charcoal-400 dark:text-stone-500">or</span>
+            <span className="text-xs text-charcoal-500 dark:text-stone-500">or</span>
             <div className="h-px flex-1 bg-stone-200 dark:bg-white/10" />
           </div>
 

@@ -62,13 +62,13 @@ export default async function WishlistPage() {
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
               href="/destinations"
-              className="bg-charcoal-950 hover:bg-charcoal-800 dark:text-charcoal-950 rounded-xl px-5 py-2.5 text-sm font-medium text-white dark:bg-white dark:hover:bg-stone-100"
+              className="bg-charcoal-950 hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 dark:!text-[#141310] rounded-xl px-5 py-2.5 text-sm font-medium text-white dark:bg-white dark:hover:bg-stone-100 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-200"
             >
               Explore Destinations
             </Link>
             <Link
               href="/packages"
-              className="text-charcoal-950 dark:bg-charcoal-900 dark:hover:bg-charcoal-800 rounded-xl border border-stone-200 bg-white px-5 py-2.5 text-sm font-medium hover:bg-stone-50 dark:border-white/10 dark:text-white"
+              className="text-charcoal-950 dark:bg-charcoal-900 dark:hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white rounded-xl border border-stone-200 bg-white px-5 py-2.5 text-sm font-medium hover:bg-stone-50 dark:border-white/10 dark:text-white"
             >
               Browse Packages
             </Link>
@@ -220,7 +220,7 @@ export default async function WishlistPage() {
 
                       <Link
                         href={`/packages/${pkg.slug}`}
-                        className="bg-charcoal-950 hover:bg-charcoal-800 dark:text-charcoal-950 flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-white transition-all dark:bg-white dark:hover:bg-stone-100"
+                        className="bg-charcoal-950 hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:!text-[#141310] flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-white transition-all dark:bg-white dark:hover:bg-stone-100"
                       >
                         View
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -299,7 +299,7 @@ export default async function WishlistPage() {
                       </div>
                       <Link
                         href={`/hotels/${hotel.slug}`}
-                        className="bg-charcoal-950 hover:bg-charcoal-800 dark:text-charcoal-950 flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-white transition-all dark:bg-white dark:hover:bg-stone-100"
+                        className="bg-charcoal-950 hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:!text-[#141310] flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-semibold text-white transition-all dark:bg-white dark:hover:bg-stone-100"
                       >
                         View
                         <ArrowRight className="h-3.5 w-3.5" />

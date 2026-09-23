@@ -25,6 +25,7 @@ interface WeatherData {
     apparent_temperature: number;
     visibility: number;
     uv_index: number;
+    time: string;
   };
   daily: {
     time: string[];
@@ -252,10 +253,14 @@ function WeatherContent({ data, style }: { data: WeatherData; style: typeof weat
   const WeatherIcon = style.icon;
   const uvInfo = getUVLabel(Math.round(current.uv_index ?? 0));
 
-  // Get next 6 hours for mini chart
-  const nowHour = new Date().getHours();
-  const hourlySlice = data.hourly.time.slice(nowHour, nowHour + 7);
-  const tempSlice = data.hourly.temperature_2m.slice(nowHour, nowHour + 7);
+  // Get next 6 hours for mini chart based on destination's local time
+  const currentTimeRaw = data.current?.time || data.hourly.time[0]; // "YYYY-MM-DDTHH:00"
+  const currentHourPrefix = currentTimeRaw ? currentTimeRaw.substring(0, 13) : ""; 
+  let startIndex = data.hourly.time.findIndex(t => t.startsWith(currentHourPrefix));
+  if (startIndex === -1) startIndex = 0;
+
+  const hourlySlice = data.hourly.time.slice(startIndex, startIndex + 7);
+  const tempSlice = data.hourly.temperature_2m.slice(startIndex, startIndex + 7);
   const minTemp = Math.min(...tempSlice);
   const maxTemp = Math.max(...tempSlice);
   const tempRange = maxTemp - minTemp || 1;
@@ -309,7 +314,8 @@ function WeatherContent({ data, style }: { data: WeatherData; style: typeof weat
           <div className="flex items-end justify-between gap-1 rounded-2xl bg-white/[0.03] p-3 ring-1 ring-white/[0.05]">
             {tempSlice.slice(0,7).map((temp, i) => {
               const height = Math.max(16, Math.round(((temp - minTemp) / tempRange) * 40) + 16);
-              const hour = new Date(hourlySlice[i] ?? 0).getHours();
+              const hourStr = (hourlySlice[i] || "").substring(11, 13);
+              const hour = parseInt(hourStr, 10) || 0;
               const label = hour === 0 ? "12a" : hour < 12 ? `${hour}a` : hour === 12 ? "12p" : `${hour - 12}p`;
               return (
                 <div key={i} className="flex flex-col items-center gap-1 flex-1">

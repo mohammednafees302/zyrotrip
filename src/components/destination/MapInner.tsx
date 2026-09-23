@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -31,14 +31,40 @@ const customIcon = L.divIcon({
   popupAnchor: [0, -45],
 });
 
+interface MapMarker {
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  subtitle: string;
+  type?: 'hotel' | 'experience' | 'attraction' | 'destination';
+}
+
 interface MapInnerProps {
   latitude: number;
   longitude: number;
   name: string;
   country: string;
+  markers?: MapMarker[];
 }
 
-export default function MapInner({ latitude, longitude, name, country }: MapInnerProps) {
+function BoundsFitter({ markers }: { markers: any[] }) {
+  const map = useMap();
+  useEffect(() => {
+    if (markers.length > 0) {
+      const bounds = L.latLngBounds(markers.map(m => [m.latitude, m.longitude]));
+      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 14 });
+    }
+  }, [map, markers]);
+  return null;
+}
+
+export default function MapInner({ latitude, longitude, name, country, markers = [] }: MapInnerProps) {
+  // Always include the main destination marker
+  const allMarkers = [
+    { id: 'main', latitude, longitude, title: name, subtitle: country, type: 'destination' },
+    ...markers
+  ];
   return (
     <MapContainer
       center={[latitude, longitude]}
@@ -47,43 +73,51 @@ export default function MapInner({ latitude, longitude, name, country }: MapInne
       zoomControl={false}
       style={{ height: '100%', width: '100%' }}
     >
+      <BoundsFitter markers={allMarkers} />
       <TileLayer
         attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
         url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
       />
       <ZoomControl position="bottomright" />
-      <Marker position={[latitude, longitude]} icon={customIcon}>
-        <Popup
-          closeButton={false}
-          className="zyrotrip-popup"
-        >
-          <div style={{
-            background: 'linear-gradient(135deg, #1a1917, #242320)',
-            borderRadius: '12px',
-            padding: '12px 16px',
-            border: '1px solid rgba(212,175,55,0.3)',
-            minWidth: '140px',
-          }}>
-            <p style={{
-              color: '#D4AF37',
-              fontWeight: 700,
-              fontSize: '15px',
-              margin: '0 0 4px 0',
-              fontFamily: 'Inter, sans-serif',
+      {allMarkers.map((m) => (
+        <Marker key={m.id} position={[m.latitude, m.longitude]} icon={customIcon}>
+          <Popup
+            closeButton={false}
+            className="zyrotrip-popup"
+          >
+            <div style={{
+              background: 'linear-gradient(135deg, #1a1917, #242320)',
+              borderRadius: '12px',
+              padding: '12px 16px',
+              border: '1px solid rgba(212,175,55,0.3)',
+              minWidth: '140px',
             }}>
-              {name}
-            </p>
-            <p style={{
-              color: 'rgba(255,255,255,0.55)',
-              fontSize: '12px',
-              margin: 0,
-              fontFamily: 'Inter, sans-serif',
-            }}>
-              {country}
-            </p>
-          </div>
-        </Popup>
-      </Marker>
+              {m.type && m.type !== 'destination' && (
+                <span style={{ fontSize: '10px', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', display: 'block', marginBottom: '2px' }}>
+                  {m.type}
+                </span>
+              )}
+              <p style={{
+                color: '#D4AF37',
+                fontWeight: 700,
+                fontSize: '15px',
+                margin: '0 0 4px 0',
+                fontFamily: 'Inter, sans-serif',
+              }}>
+                {m.title}
+              </p>
+              <p style={{
+                color: 'rgba(255,255,255,0.55)',
+                fontSize: '12px',
+                margin: 0,
+                fontFamily: 'Inter, sans-serif',
+              }}>
+                {m.subtitle}
+              </p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }

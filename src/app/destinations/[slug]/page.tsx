@@ -28,7 +28,8 @@ import {
 } from "lucide-react";
 import { db } from "@/lib/db";
 import { formatCurrency, formatDate, getInitials } from "@/lib/utils";
-import { WeatherWidget } from "@/components/destination/WeatherWidget";
+import { WeatherDashboard } from "@/components/destination/WeatherDashboard";
+import { EditorialGallery } from "@/components/destination/EditorialGallery";
 import DestinationMap from "@/components/destination/DestinationMap";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -206,7 +207,7 @@ export default async function DestinationPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-gray-950 text-white">
+      <div className="min-h-screen bg-gray-950 text-white">
         {/* ── Hero ──────────────────────────────────────────────────────── */}
         <section className="relative h-screen min-h-[640px] overflow-hidden">
           {/* Background Image */}
@@ -344,11 +345,6 @@ export default async function DestinationPage({
 
               {/* Info Cards */}
               <div className="space-y-4">
-                <WeatherWidget
-                  latitude={destination.latitude ? Number(destination.latitude) : null}
-                  longitude={destination.longitude ? Number(destination.longitude) : null}
-                  destinationName={destination.name}
-                />
 
                 {destination.climate && (
                   <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
@@ -410,53 +406,21 @@ export default async function DestinationPage({
           </div>
         </section>
 
+        {/* ── Weather ───────────────────────────────────────────────────── */}
+        <section className="py-20 px-6 md:px-12 lg:px-20 bg-gray-900/30 border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <WeatherDashboard
+              slug={destination.slug}
+              destinationName={destination.name}
+            />
+          </div>
+        </section>
+
         {/* ── Gallery ───────────────────────────────────────────────────── */}
         {destination.images.length > 0 && (
-          <section className="py-20 px-6 md:px-12 lg:px-20 bg-gray-900/50">
+          <section className="py-24 px-6 md:px-12 lg:px-20 bg-gray-950 border-t border-white/5">
             <div className="max-w-7xl mx-auto">
-              <div className="flex items-center justify-between mb-10">
-                <div>
-                  <span className="text-xs font-semibold tracking-widest text-rose-400 uppercase">
-                    Gallery
-                  </span>
-                  <h2 className="mt-2 text-3xl font-bold text-white flex items-center gap-3">
-                    <Camera className="w-7 h-7 text-rose-400" />
-                    Photo Gallery
-                  </h2>
-                </div>
-                <span className="text-gray-500 text-sm">
-                  {destination.images.length} photos
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {destination.images.map((img, index) => (
-                  <div
-                    key={img.id}
-                    className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
-                      index === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"
-                    }`}
-                  >
-                    <Image
-                      src={img.url}
-                      alt={img.alt ?? `${destination.name} - photo ${index + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes={
-                        index === 0
-                          ? "(max-width: 768px) 100vw, 50vw"
-                          : "(max-width: 768px) 50vw, 25vw"
-                      }
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {img.caption && (
-                      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p className="text-white text-xs">{img.caption}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+              <EditorialGallery images={destination.images} destinationName={destination.name} />
             </div>
           </section>
         )}
@@ -784,6 +748,14 @@ export default async function DestinationPage({
             longitude={Number(destination.longitude)}
             name={destination.name}
             country={destination.country.name}
+            markers={destination.hotels.filter(h => h.latitude && h.longitude).map(h => ({
+              id: h.id,
+              latitude: Number(h.latitude),
+              longitude: Number(h.longitude),
+              title: h.name,
+              subtitle: 'Premium Hotel',
+              type: 'hotel'
+            }))}
           />
         )}
 
@@ -941,7 +913,7 @@ export default async function DestinationPage({
             )}
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

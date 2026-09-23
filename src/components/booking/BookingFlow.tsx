@@ -363,7 +363,7 @@ export function BookingFlow({ pkg }: { pkg: BookingPackage }) {
         <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center">
           <button
             onClick={() => router.push("/profile/bookings")}
-            className="rounded-xl bg-charcoal-950 px-6 py-3 font-semibold text-white hover:bg-charcoal-800 dark:bg-white dark:text-charcoal-950"
+            className="rounded-xl bg-charcoal-950 px-6 py-3 font-semibold text-white hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:bg-white dark:!text-[#141310]"
           >
             View My Bookings
           </button>
@@ -389,7 +389,7 @@ export function BookingFlow({ pkg }: { pkg: BookingPackage }) {
               <div key={s.id} className="flex flex-col items-center">
                 <div className={cn(
                   "flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors",
-                  step > s.id ? "bg-amber-500 text-white" : step === s.id ? "bg-charcoal-950 text-white dark:bg-white dark:text-charcoal-950" : "bg-stone-200 text-stone-500 dark:bg-white/10"
+                  step > s.id ? "bg-amber-500 text-white" : step === s.id ? "bg-charcoal-950 text-white dark:bg-white dark:!text-[#141310]" : "bg-stone-200 text-stone-500 dark:bg-white/10"
                 )}>
                   {step > s.id ? <Check className="h-4 w-4" /> : s.id}
                 </div>
@@ -572,7 +572,7 @@ export function BookingFlow({ pkg }: { pkg: BookingPackage }) {
                       type="button"
                       onClick={applyCoupon}
                       disabled={isCheckingCoupon || !watchCoupon}
-                      className="rounded-lg bg-charcoal-950 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:text-charcoal-950"
+                      className="rounded-lg bg-charcoal-950 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:!text-[#141310]"
                     >
                       {isCheckingCoupon ? <Loader2 className="h-4 w-4 animate-spin" /> : "Apply"}
                     </button>
@@ -677,7 +677,7 @@ export function BookingFlow({ pkg }: { pkg: BookingPackage }) {
                 <button
                   type="button"
                   onClick={() => validateStep(step)}
-                  className="flex items-center gap-1.5 rounded-xl bg-charcoal-950 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-200"
+                  className="flex items-center gap-1.5 rounded-xl bg-charcoal-950 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-200 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-300"
                 >
                   Next Step <ChevronRight className="h-4 w-4" />
                 </button>

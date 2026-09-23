@@ -144,7 +144,7 @@ export function ProfileForm({ user }: { user: any }) {
         <button 
           type="submit"
           disabled={isSaving}
-          className="flex items-center gap-2 rounded-xl bg-charcoal-950 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800 disabled:opacity-70 dark:bg-white dark:text-charcoal-950 dark:hover:bg-stone-200"
+          className="flex items-center gap-2 rounded-xl bg-charcoal-950 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-950 focus-visible:ring-offset-2 active:bg-charcoal-900 active:text-white disabled:opacity-70 dark:bg-white dark:!text-[#141310] dark:hover:bg-stone-200 dark:hover:!text-[#141310] dark:focus-visible:!ring-white dark:active:bg-stone-300"
         >
           {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
           Save Changes

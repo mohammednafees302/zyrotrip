@@ -118,6 +118,7 @@ model Destination {
   seoDescription  String?
   // Relations
   images          DestinationImage[]
+  attractions     Attraction[]
   hotels          Hotel[]
   experiences     Experience[]
   packages        TravelPackage[]
@@ -137,6 +138,22 @@ model Destination {
   @@index([published])
   @@index([rating])
   @@map("destinations")
+}
+
+model Attraction {
+  id            String      @id @default(cuid())
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  name          String
+  description   String?
+  image         String?
+  latitude      Float?
+  longitude     Float?
+  order         Int         @default(0)
+  createdAt     DateTime    @default(now())
+
+  @@index([destinationId, order])
+  @@map("attractions")
 }
 
 model DestinationImage {

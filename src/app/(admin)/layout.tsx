@@ -56,11 +56,11 @@ export default async function AdminLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 md:p-8 lg:p-10 w-full overflow-x-hidden">
+      <div className="flex-1 p-6 md:p-8 lg:p-10 w-full overflow-x-hidden">
         <div className="max-w-6xl mx-auto">
           {children}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

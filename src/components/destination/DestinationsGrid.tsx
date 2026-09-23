@@ -192,7 +192,7 @@ export async function DestinationsGrid({ searchParams }: DestinationsGridProps) 
               })}`}
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium transition-all ${
                 p === page
-                  ? "bg-charcoal-950 text-white dark:bg-white dark:text-charcoal-950"
+                  ? "bg-charcoal-950 text-white dark:bg-white dark:!text-[#141310]"
                   : "border border-stone-200 text-charcoal-600 hover:border-charcoal-300 hover:bg-stone-50 dark:border-white/10 dark:text-stone-400 dark:hover:bg-white/5"
               }`}
             >
