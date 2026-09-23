@@ -90,11 +90,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export const dynamicParams = false;
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: HotelDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const hotel = await getHotel(slug);
+  
+  let hotel = null;
+  try {
+    hotel = await getHotel(slug);
+  } catch (err) {
+    console.error("Metadata DB Error:", err);
+  }
+
   if (!hotel) return { title: "Hotel Not Found" };
 
   return {
@@ -116,10 +125,20 @@ export default async function HotelDetailPage({ params }: HotelDetailPageProps) 
   const { slug } = await params;
 
   let hotel;
+  let dbError = null;
   try {
     hotel = await getHotel(slug);
-  } catch {
-    hotel = null;
+  } catch (err: any) {
+    dbError = err.message + '\n' + err.stack;
+  }
+
+  if (dbError) {
+    return (
+      <div className="min-h-screen bg-black text-red-500 p-20 font-mono">
+        <h1>Vercel Runtime Error Diagnostic:</h1>
+        <pre>{dbError}</pre>
+      </div>
+    );
   }
 
   if (!hotel) notFound();

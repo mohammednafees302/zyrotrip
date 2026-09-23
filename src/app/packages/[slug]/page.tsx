@@ -62,11 +62,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export const dynamicParams = false;
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PackageDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const pkg = await getPackage(slug);
+  
+  let pkg = null;
+  try {
+    pkg = await getPackage(slug);
+  } catch (err) {
+    console.error("Metadata DB Error:", err);
+  }
+
   if (!pkg) return { title: "Package Not Found" };
 
   return {
@@ -102,10 +111,20 @@ export default async function PackageDetailPage({ params }: PackageDetailPagePro
   const { slug } = await params;
 
   let pkg;
+  let dbError = null;
   try {
     pkg = await getPackage(slug);
-  } catch {
-    pkg = null;
+  } catch (err: any) {
+    dbError = err.message + '\n' + err.stack;
+  }
+
+  if (dbError) {
+    return (
+      <div className="min-h-screen bg-black text-red-500 p-20 font-mono">
+        <h1>Vercel Runtime Error Diagnostic:</h1>
+        <pre>{dbError}</pre>
+      </div>
+    );
   }
 
   if (!pkg) notFound();

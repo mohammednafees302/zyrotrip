@@ -106,6 +106,8 @@ export async function generateStaticParams() {
   }));
 }
 
+export const dynamicParams = false;
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({
@@ -114,7 +116,13 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const destination = await getDestination(slug);
+  
+  let destination = null;
+  try {
+    destination = await getDestination(slug);
+  } catch (err) {
+    console.error("Metadata DB Error:", err);
+  }
 
   if (!destination) {
     return { title: "Destination Not Found | ZyroTrip" };
@@ -180,7 +188,23 @@ export default async function DestinationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const destination = await getDestination(slug);
+  
+  let destination;
+  let dbError = null;
+  try {
+    destination = await getDestination(slug);
+  } catch (err: any) {
+    dbError = err.message + '\n' + err.stack;
+  }
+
+  if (dbError) {
+    return (
+      <div className="min-h-screen bg-black text-red-500 p-20 font-mono">
+        <h1>Vercel Runtime Error Diagnostic:</h1>
+        <pre>{dbError}</pre>
+      </div>
+    );
+  }
 
   if (!destination) {
     notFound();
