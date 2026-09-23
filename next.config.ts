@@ -46,13 +46,14 @@ const nextConfig: NextConfig = {
     imageSizes: [32, 64, 128, 256, 384, 512],
   },
 
+  // Ensure SQLite database is bundled for Vercel serverless functions
+  serverExternalPackages: ['@prisma/client', 'prisma'],
+  outputFileTracingIncludes: {
+    '/**/*': ['./prisma/dev.db'],
+  },
+
   // Experimental features
   experimental: {
-    // Ensure SQLite database is bundled for Vercel serverless functions
-    serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
-    outputFileTracingIncludes: {
-      '/**/*': ['./prisma/dev.db'],
-    },
     // Optimize package imports for tree shaking
     optimizePackageImports: [
       "lucide-react",
