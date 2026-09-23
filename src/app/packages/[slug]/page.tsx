@@ -49,6 +49,19 @@ async function getPackage(slug: string) {
   });
 }
 
+// ─── Static Params ────────────────────────────────────────────────────────────
+
+export async function generateStaticParams() {
+  const packages = await db.travelPackage.findMany({
+    where: { published: true, deletedAt: null },
+    select: { slug: true },
+  });
+
+  return packages.map((pkg) => ({
+    slug: pkg.slug,
+  }));
+}
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PackageDetailPageProps): Promise<Metadata> {

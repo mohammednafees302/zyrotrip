@@ -93,6 +93,19 @@ async function getDestination(slug: string): Promise<DestinationFull | null> {
   }) as Promise<DestinationFull | null>;
 }
 
+// ─── Static Params ────────────────────────────────────────────────────────────
+
+export async function generateStaticParams() {
+  const destinations = await db.destination.findMany({
+    where: { published: true, deletedAt: null },
+    select: { slug: true },
+  });
+
+  return destinations.map((dest) => ({
+    slug: dest.slug,
+  }));
+}
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({

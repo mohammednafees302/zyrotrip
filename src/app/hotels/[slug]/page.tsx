@@ -77,6 +77,19 @@ async function getHotel(slug: string) {
   });
 }
 
+// ─── Static Params ────────────────────────────────────────────────────────────
+
+export async function generateStaticParams() {
+  const hotels = await db.hotel.findMany({
+    where: { published: true, deletedAt: null },
+    select: { slug: true },
+  });
+
+  return hotels.map((hotel) => ({
+    slug: hotel.slug,
+  }));
+}
+
 // ─── Metadata ────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: HotelDetailPageProps): Promise<Metadata> {
