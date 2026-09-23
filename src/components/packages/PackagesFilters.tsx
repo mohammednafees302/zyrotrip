@@ -72,7 +72,7 @@ export function PackagesFilters({ searchParams }: PackagesFiltersProps) {
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             placeholder="Search packages..."
-            className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2.5 pl-9 pr-4 text-sm text-charcoal-950 placeholder:text-charcoal-400 outline-none transition-colors focus:border-amber-500/50 focus:bg-white focus:text-charcoal-950 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-stone-500 dark:focus:border-amber-500/50 dark:focus:!bg-[#282622] dark:focus:!text-white"
+            className="w-full rounded-xl border py-2.5 pl-9 pr-4 text-sm outline-none transition-colors bg-stone-50 border-stone-200 text-charcoal-950 placeholder:text-charcoal-400 hover:bg-stone-100 hover:border-stone-300 focus:bg-white focus:border-amber-500/50 focus:text-charcoal-950 dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder:text-stone-500 dark:hover:bg-white/10 dark:hover:border-white/20 dark:focus:bg-charcoal-900 dark:focus:border-amber-500/50 dark:focus:text-white"
           />
         </div>
       </div>
